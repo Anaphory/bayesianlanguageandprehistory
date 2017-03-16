@@ -3,7 +3,7 @@
 \mode<presentation> {\usetheme{Kaiping}}
 \setbeamercovered{transparent} 
 
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 
 \usepackage{fontspec}
 %\setmainfont{Linux Biolinum}
@@ -14,6 +14,9 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tikz-cd}
+
+\usepackage[style=authoryear]{biblatex}
+\bibliography{papers}
 
 \usefonttheme[onlymath]{serif}
 \usetheme{Warsaw}
@@ -74,10 +77,11 @@
       h ɐ n d - ɹ ə d \_ w ɜː - - d\\
       h ʊ n d - ɾ a - \_ - oː - - d
       };}}
-    \visible<2->{{\node [anchor=west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\textwidth,trim={0 0 7cm 0},clip]{Bayesian-Rallus.png}};}}
+    \visible<2->{{\node [anchor=west,inner sep=0] (image) at (0,0) {\footnotemark\includegraphics[width=0.5\textwidth,trim={0 0 7cm 0},clip]{Bayesian-Rallus.png}};}}
     \visible<3->{{\node [align=right,red,font={\Huge\bfseries}] at (image.center)
         {Flemish\\Dutch\\German\\Frisian\\English\\Swedish\\Danish\\Norwegian};}}
   \end{tikzpicture}
+  \footnotetext{\cite{garcia2015trans}}
 \end{frame}
 \subsection{Bayesian …}
 \begin{frame}{Bayes' Theorem}
@@ -137,7 +141,7 @@
 \begin{frame}{Example 1: Austronesian}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \includegraphics[page=1,width=\textwidth]{abvd-hand.pdf}
+      \footnotemark\includegraphics[page=1,width=0.9\textwidth]{abvd-hand.pdf}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
@@ -148,12 +152,14 @@
       \end{itemize}
     \end{column}
   \end{columns}
+    \footnotetext{\cite{abvd}}
 \end{frame}
 \begin{frame}{Example 1: Austronesian}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\textwidth,page=2,trim={2cm 4cm 1cm 5cm},clip]{austronesian.pdf}
+      \footnotemark\includegraphics[width=\textwidth,page=2,trim={2cm 4cm 1cm 5cm},clip]{austronesian.pdf}
     \end{column}
+    \footnotetext{\cite{gray2009language}}
     \begin{column}{0.5\textwidth}
       \footnotesize “The invention of the outrigger canoe and its
         sail may have enabled the Austronesians to move across this
@@ -162,9 +168,17 @@
         reconstructions showing that the terminology associated with
         the outrigger canoe complex can only be traced back to Proto-
         Malayo-Polynesian and not Proto-Austronesian (41).”
-      \includegraphics[width=0.8\textwidth,page=3,trim={1cm 1cm 7.5cm 16cm},clip]{austronesian.pdf}
+        \includegraphics[width=0.8\textwidth,page=3,trim={1cm 1cm 7.5cm 16cm},clip]{austronesian.pdf}
+        
     \end{column}
   \end{columns}
+\end{frame}
+\begin{frame}{Example 1: Austronesian – Criticism}
+  \begin{itemize}
+  \item Pauses and pulses appear with high posterior probability
+  \item Prior? Do the results follow from data or original guess?
+  \item Some subgroupings not linguistically supported – Data contains sociogeography
+  \end{itemize}
 \end{frame}
 \subsection{Bantu: Phylogeography}
 \begin{frame}{Example 2: Bantu}
@@ -176,17 +190,20 @@
       \item Binary covarion with 6 (empir.) rate categories
       \item Brownian motion ancestral state reconstruction of
         latitudes and longitudes on 500 best trees
+      \item Branch-dependent speed of movement and lexical change
       \item Other statistical analyses
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
+      \footnotemark\includegraphics[width=0.9\textwidth]{bantuwordlist.pdf}
     \end{column}
   \end{columns}
+    \footnotetext{\cite{bastin1999continuity}}
 \end{frame}
 \begin{frame}{Example 2: Bantu}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\textwidth,page=5,trim={5cm 11.5cm 3cm 1cm},clip]{bantu.pdf}
+      \footnotemark\includegraphics[width=\textwidth,page=5,trim={5cm 11.5cm 3cm 1cm},clip]{bantu.pdf}
     \end{column}
     \begin{column}{0.5\textwidth}
       \footnotesize “These debates have implications regarding the
@@ -203,25 +220,40 @@
       north of the rainforest.”
     \end{column}
   \end{columns}
+  \footnotetext{\cite{currie2013cultural}}
+\end{frame}
+\begin{frame}{Example 1: Bantu – Criticism}
+  \begin{itemize}
+  \item Several robustness checks of parameters
+  \item Prior?
+  \item How good is Brownian motion as model for language spread?\\
+    Language shift and post-split contact might affect geographic
+    inference. (Though the fundamental results look robust.)
+  \end{itemize}
 \end{frame}
 \section{And why actually not.}
-\begin{frame}{Criticism}
+\begin{frame}{It will not solve all problems}
   Some papers
   \begin{itemize}
   \item disregard prior knowledge
   \item use models that don't fit their data
+  \item don't show their priors
   \end{itemize}
   \pause
   State of the art models
   \begin{itemize}
   \item can only build trees, no language contact
-  \item only support cognate data (baby steps towards phonetic data and typology)
+    \pause
+  \item only support cognate data (baby steps towards phonetic data and typology),
+    \pause no distinction between innovation and retention
+    \pause 
   \item are not realistic and not calibrated
   \end{itemize}
   \pause
-  We might never
+  I don't think we will ever
   \begin{itemize}
   \item properly model morphosyntax
+  \item fully automatize the comparative method
   \end{itemize}
 \end{frame}
 \section{Conclusions}
@@ -229,14 +261,15 @@
   \begin{itemize}
   \item Computer models can help make sense of large data sets
   \item Mathematical models can handle new \emph{types} of data for new types of results
-  \item Very few language-specific models so far
-  \item If you disagree with results, \emph{what parameters or choices do you disagree with?}
+  \item Very few language-appropriate models so far
   \end{itemize}
+  The computer only tests consistency.
+  If you disagree with results, \emph{what parameters or choices do you disagree with?}
 \end{frame}
 \subsection{Further Reading}
-\begin{frame}
+\begin{frame}[t,allowframebreaks]{Sources and Further Reading}
   Course
-  Literature: McMahon \& McMahon
+  \printbibliography
 \end{frame}
 \end{document}
 %%% Local Variables:
