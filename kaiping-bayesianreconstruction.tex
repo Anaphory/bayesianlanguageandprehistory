@@ -15,8 +15,14 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 
-\usepackage[style=authoryear]{biblatex}
+\usepackage[style=authoryear,
+            backend=biber,
+            bibstyle=biblatex-sp-unified,
+            citestyle=sp-authoryear-comp,
+            maxcitenames=3,
+            maxbibnames=99]{biblatex}
 \bibliography{papers}
+\newcommand{\paragraph}[1]{\par{\bfseries #1}}
 
 \usefonttheme[onlymath]{serif}
 \usetheme{Warsaw}
@@ -30,13 +36,16 @@
 % Singapore
 % Malmoe
 
+\setlength{\parskip}{1ex plus 0.2ex minus 0.5ex}
+
+
 % Decrease footnote size
 
 \title{Growing Trees from Big Data}
 \subtitle{Bayesian Phyologeny for Historical Linguistics}
 \author{Gereon Kaiping}
 %\institute{Leiden University Centre for Linguistics, the Netherlands}
-\date{20-3-2017}
+\date{2017-07-18}
 
 \begin{document}
 
@@ -71,33 +80,74 @@
       cctccacgcc aacaaagcct cattcttctt\\
       cctccacgcc aacggagcct caggtgtctt\\
       cctccactcc aacggagcct caggtgtctt};}}}
-    \visible<3->{{\node [align=left,anchor=east,red,font={\ttfamily}] at (arrow.west) {
+    \visible<3->{{\node [align=left,anchor=east,cyan!50!black,font={\ttfamily}] at (arrow.west) {
       h ʊ n - ə ɹ - t \_ v ɔ~ ɹ - t\\
-      h ʊ n d ɐ - - t \_ β ɔː - - t\\
+      
+      h ʊ n d ɐ - - t \_ v ɔː - - t\\
       h ʊ n d ə - - t \_ β œ~ - - t\\
       h ɐ n d - ɹ ə d \_ w ɜː - - d\\
       h ʊ n d - ɾ a - \_ - oː - - d
       };}}
     \visible<2->{{\node [anchor=west,inner sep=0] (image) at (0,0) {\footnotemark\includegraphics[width=0.5\textwidth,trim={0 0 7cm 0},clip]{Bayesian-Rallus.png}};}}
-    \visible<3->{{\node [align=right,red,font={\Huge\bfseries}] at (image.center)
+    \visible<3->{{\node [align=right,black!40!white,font={\Huge\bfseries}] at (image.center)
         {Flemish\\Dutch\\German\\Frisian\\English\\Swedish\\Danish\\Norwegian};}}
   \end{tikzpicture}
   \footnotetext{\cite{garcia2015trans}}
 \end{frame}
 \subsection{Bayesian …}
+\begin{frame}{Evolution as a random process}
+  \paragraph{Idea} Evolution = a random process on a tree\footnote{or a network or
+    a population, as long as we can formalize it.}.
+
+  Generate a tree and some language history using dice rolls.
+
+  \pause
+
+  \paragraph{Example}
+  \begin{itemize}
+  \item Start with \texttt{TATATA}
+  \item Roll a dice: On a 5 or 6, split the tree here.
+  \item Roll a dice: Replace that letter in the word with \texttt{E}.
+  \end{itemize}
+  \pause
+  $P(\text{Data} \mid \text{Model})$.
+\end{frame}
+\begin{frame}{Going back from data}
+  Is given data compatible with this model?
+
+  \pause
+  \begin{itemize}
+  \item \texttt{TATETA}
+  \pause
+  \item \texttt{TATATA}
+  \pause
+  \item \texttt{TATUTA}
+  \pause
+  \item \texttt{TATETA}, \texttt{TAEATA}
+  \pause
+  \item \texttt{EEEEEE}
+  \end{itemize}
+  \pause
+
+  \emph{How} compatible is this data with this or that model?
+
+  Probabilities = confidence of belief. {\small Not: repeatable random
+    experiment}.
+
+  $P(\text{Model} \mid \text{Data})$.
+\end{frame}
 \begin{frame}{Bayes' Theorem}
-  \textbf{Bayesian Phylogenetic Inference}, from biology
-  
-  \textit{Idea:} Evolution = a random process on a tree. What trees are compatible?
-
-  \pause
-  Probabilities = confidence of belief, not repeatable random experiment.
-
-  \pause
-  “What are consistent beliefs?” = “What trees are consistent with what I believe about evolution?” = “Which histories are likely?”
   \begin{align}
+    \tag{\footnotemark}
     P(\text{Model} \mid \text{Data}) \propto P(\text{Data} \mid \text{Model}) \times P(\text{Model})
   \end{align}
+  \footnotetext{\cite{michael2015bayesian}}
+  
+  \begin{center}
+    “What did the language history look like?” \\ = \\  “What trees are compatible with
+    the data and my idea of language change?” \\ = \\ “Weighted by how ‘strange’
+    they are, how well does each tree explain my data?”
+  \end{center}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{center}
@@ -106,7 +156,7 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \pause
-      Bayesian inference is complicated, but
+      Bayesian inference may look complicated, but it is
       \begin{itemize}
       \item model-based
       \item can incorporate prior knowledge
@@ -117,7 +167,7 @@
 \end{frame}
 \subsection{… Phylogenetics}
 \begin{frame}{Computational Phylogenetics}
-  “Roll dice to generate trees, but only keep the good trees”
+  “Roll dice to generate trees, but only keep the good ones”
 
   \pause
   Need:
@@ -138,6 +188,13 @@
   \end{itemize}
 \end{frame}
 \section{[Examples]}
+\begin{frame}{So much the theory.}
+  \begin{itemize}
+  \item Austronesian
+  \item Bantu
+  \item Indo-European
+  \end{itemize}
+\end{frame}
 \subsection{Austronesian: Branches and times}
 \begin{frame}{Example 1: Austronesian}
   \begin{columns}
@@ -188,7 +245,7 @@
       \begin{itemize}
       \item 2908 cognate classes for 90 meanings in 542 varieties of Bantu/Bantoid,
         with geographical point-coordinates
-      \item Binary covarion with 6 (empir.) rate categories
+      \item Binary covarion with 6 (empirical) rate categories
       \item Brownian motion ancestral state reconstruction of
         latitudes and longitudes on 500 best trees
       \item Branch-dependent speed of movement and lexical change
@@ -223,7 +280,7 @@
   \end{columns}
   \footnotetext{\cite{currie2013cultural}}
 \end{frame}
-\begin{frame}{Example 1: Bantu – Criticism}
+\begin{frame}{Example 2: Bantu – Criticism}
   \begin{itemize}
   \item Several robustness checks of parameters
   \item Prior?
@@ -231,6 +288,11 @@
     Language shift and post-split contact might affect geographic
     inference. (Though the fundamental results look robust.)
   \end{itemize}
+\end{frame}
+\subsection{Indo-European: Chaos}
+\begin{frame}{Example 3: Indo-European}
+\end{frame}
+\begin{frame}{Example 3: Indo-European – Criticism}
 \end{frame}
 \section{And why actually not.}
 \begin{frame}{It will not solve all problems}
@@ -240,7 +302,8 @@
   \item use models that don't fit their data
   \item don't show their priors
   \end{itemize}
-  \pause
+\end{frame}
+\begin{frame}{Not even in a better world.}
   State of the art models
   \begin{itemize}
   \item can only build trees, no language contact
@@ -254,7 +317,7 @@
   I think we will always
   \begin{itemize}
   \item need domain experts
-  \item have problems model morphosyntax
+  \item have problems modelling morphosyntax
   \item have problems “automatizing” particular observed patterns (eg. good/better)
   \end{itemize}
 \end{frame}
@@ -270,7 +333,7 @@
 \end{frame}
 \subsection{Further Reading}
 \begin{frame}[t,allowframebreaks]{Sources and Further Reading}
-  \nocite{mcmahon,grayatkinson}
+  \nocite{mcmahon2005language,grayatkinson}
   \printbibliography
 \end{frame}
 \end{document}
