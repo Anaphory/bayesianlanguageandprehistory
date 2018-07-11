@@ -58,16 +58,16 @@
 \section{Solutions to All Your Problems!}
 \subsection{Crunching Numbers}
 \begin{frame}{Problem}
-  Using the comparative method is hard, because
+  Using the comparative method is hard and limited, because
   \begin{itemize}
   \item it is a lot of painstaking work,
   \item we don't know how to weigh the evidence,
   \item is a mix of hypothesis generation and validation,
   \item loan words and chance resemblances make our lives more difficult,
-  \item cognates may have changed meanings.
+  \item cognates may have changed meanings (but how far?).
   \end{itemize}
   \pause
-  And then doesn't even give us dates, just “not before” or “not after” if we are lucky.
+  And then it doesn't even give us dates, just “not before” or “not after” if we are lucky,
 \end{frame}
 \begin{frame}{Solution}
   Tree reconstruction methods from \textbf{Bioinformatics}
@@ -161,6 +161,7 @@
       \item model-based
       \item can incorporate prior knowledge
       \item outputs result uncertainty
+      \item gives implicit weights from first principles
       \end{itemize}
     \end{column}
   \end{columns}
@@ -180,9 +181,9 @@
   \pause
   Data:
   \begin{itemize}
-  \item Swadesh lists: models going back to Glottochronology – but better
+  \item Swadesh lists: models based on semantic change (like Glottochronology – but without its problems)
   \item Geography: various models
-  \item Phonetic word lists: still in infancy
+  \item Phonetic alignments: still in infancy
   \item Typological data: Some approaches, problems with universals/pathways
   \item Morphosyntax: ??????
   \end{itemize}
@@ -224,18 +225,19 @@
         channel before spreading rapidly over the 7000 km from the
         Philippines to Polynesia (4). This is supported by linguistic
         reconstructions showing that the terminology associated with
-        the outrigger canoe complex can only be traced back to Proto-
-        Malayo-Polynesian and not Proto-Austronesian (41).”
+        the outrigger canoe complex can only be traced back to
+        Proto-Malayo-Polynesian and not Proto-Austronesian (41).”
         \includegraphics[width=0.8\textwidth,page=3,trim={1cm 1cm 7.5cm 16cm},clip]{austronesian.pdf}
         
     \end{column}
   \end{columns}
 \end{frame}
-\begin{frame}{Example 1: Austronesian – Criticism}
+\begin{frame}{Example 1: Austronesian – Critique}
   \begin{itemize}
   \item Pauses and pulses appear with high posterior probability
   \item Prior? Do the results follow from data or original guess?
   \item Some subgroupings not linguistically supported – Data contains sociogeography
+  \item How realistic is binary covarion?
   \end{itemize}
 \end{frame}
 \subsection{Bantu: Phylogeography}
@@ -280,7 +282,7 @@
   \end{columns}
   \footnotetext{\cite{currie2013cultural}}
 \end{frame}
-\begin{frame}{Example 2: Bantu – Criticism}
+\begin{frame}{Example 2: Bantu – Critique}
   \begin{itemize}
   \item Several robustness checks of parameters
   \item Prior?
@@ -289,10 +291,55 @@
     inference. (Though the fundamental results look robust.)
   \end{itemize}
 \end{frame}
-\subsection{Indo-European: Chaos}
-\begin{frame}{Example 3: Indo-European}
+\subsection{Indo-European: Ancient written sources}
+\begin{frame}{Example 3: Indo-European – Data and Prologue}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \footnotemark\includegraphics[width=\textwidth,page=1,trim={0.5cm 4.5cm 0.5cm 0.5cm},clip]{ielex.pdf}
+    \end{column}
+  \footnotetext{IELex: \cite{ielex}}
+    \begin{column}{0.5\textwidth}
+      \footnotemark\includegraphics[width=\textwidth,page=3,trim={2.2cm 4.6cm 2.7cm 5.0cm},clip]{gray2003language.pdf}
+    \end{column}
+  \footnotetext{\cite{gray2003language}}
+  \end{columns}
 \end{frame}
-\begin{frame}{Example 3: Indo-European – Criticism}
+\begin{frame}{Example 3: Indo-European}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \footnotemark\includegraphics[width=\textwidth,page=7,trim={2cm 9.8cm 2.5cm 1.8cm},clip]{chang2015ancestry.pdf}
+    \end{column}
+  \footnotetext{\cite{chang2015ancestry}}
+    \begin{column}{0.5\textwidth}
+      Starting from a replication of previous work\footnotemark, improve data,
+      methodology, tree prior and post-processing, comparing each step.
+
+      \footnotesize “Here we present a phylogenetic analysis in which ancestry
+      constraints permit more accurate inference of rates of change, based on
+      observed changes between ancient or medieval languages and their modern
+      descendants, and we show that the result strongly supports the steppe
+      hypothesis.”
+
+      “Because previous statistical phylogenetic research supported the
+      Anatolian hypothesis, linguists who find that hypothesis implausible for
+      other reasons may dismiss statistical analyses that purport to determine
+      ancestral chronology. […] statistical phylogenetic analysis can yield
+      reliable information about pre-historic chronology, at least where all of
+      the available data is taken into consideration.”
+    \end{column}
+  \end{columns}
+  \footnotetext{\cite{bouckaert2012mapping}}
+\end{frame}
+\begin{frame}{Example 3: Indo-European – Critique}
+  \begin{itemize}
+  \item Very explicit about methodology (small steps, driver files available)
+  \item Careful description of data coding
+  \item Would someone have been this careful if the original results \emph{had}
+    matched the linguists' expectations?
+  \item Ancestral constraints are very strong, and somewhat artifical in the
+    model.
+  \end{itemize}
+  \footnotetext{\cite{verkerk2017phylogenies}}
 \end{frame}
 \section{And why actually not.}
 \begin{frame}{It will not solve all problems}
@@ -311,14 +358,16 @@
   \item only support cognate data (baby steps towards phonetic data and typology),
     \pause no distinction between innovation and retention
     \pause 
-  \item are not realistic and not calibrated
+  \item are not realistic / not calibrated / have biases
+    \pause
+  \item can't actually decide high-level relationships
   \end{itemize}
   \pause
   I think we will always
   \begin{itemize}
   \item need domain experts
   \item have problems modelling morphosyntax
-  \item have problems “automatizing” particular observed patterns (eg. good/better)
+  \item have qualitative data that are hard to integrate
   \end{itemize}
 \end{frame}
 \section{Conclusions}
@@ -328,6 +377,7 @@
   \item Mathematical models can handle and combine new \emph{types} of data for new types of results
   \item The computer only tests consistency or helps build intuition, it does not replace expertise
   \item Very few language-appropriate models so far
+  \item Building a \emph{good} inference is hard!
   \end{itemize}
   If you disagree with results, \emph{what parameters or choices do you disagree with?}
 \end{frame}
