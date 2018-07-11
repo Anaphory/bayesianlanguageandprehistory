@@ -1,4 +1,4 @@
-\documentclass[9pt]{beamer}
+\documentclass[9pt,handout]{beamer}
 
 \mode<presentation> {\usetheme{Kaiping}}
 \setbeamercovered{transparent} 
@@ -10,15 +10,19 @@
 \setmonofont{DejaVu Sans Mono}
 %\setsansfont{Linux Biolinum}
 
+\usepackage{contour}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 
+\usepackage{listings}
+
 \usepackage[style=authoryear,
             backend=biber,
-            bibstyle=biblatex-sp-unified,
-            citestyle=sp-authoryear-comp,
+            %bibstyle=biblatex-sp-unified,
+            %citestyle=sp-authoryear-comp,
+            citestyle=authoryear,
             maxcitenames=3,
             maxbibnames=99]{biblatex}
 \bibliography{papers}
@@ -67,7 +71,7 @@
   \item cognates may have changed meanings (but how far?).
   \end{itemize}
   \pause
-  And then it doesn't even give us dates, just “not before” or “not after” if we are lucky,
+  And then it doesn't even give us dates, just “not before” or “not after” if we are lucky.
 \end{frame}
 \begin{frame}{Solution}
   Tree reconstruction methods from \textbf{Bioinformatics}
@@ -89,8 +93,8 @@
       h ʊ n d - ɾ a - \_ - oː - - d
       };}}
     \visible<2->{{\node [anchor=west,inner sep=0] (image) at (0,0) {\footnotemark\includegraphics[width=0.5\textwidth,trim={0 0 7cm 0},clip]{Bayesian-Rallus.png}};}}
-    \visible<3->{{\node [align=right,black!40!white,font={\Huge\bfseries}] at (image.center)
-        {Flemish\\Dutch\\German\\Frisian\\English\\Swedish\\Danish\\Norwegian};}}
+    \visible<3->{{\node [align=right,black!90!white!90!blue,font={\Huge\bfseries}] at (image.center)
+        {\contour{white}{Flemish}\\\contour{white}{Dutch}\\\contour{white}{German}\\\contour{white}{Frisian}\\\contour{white}{English}\\\contour{white}{Swedish}\\\contour{white}{Danish}\\\contour{white}{Norwegian}};}}
   \end{tikzpicture}
   \footnotetext{\cite{garcia2015trans}}
 \end{frame}
@@ -102,15 +106,26 @@
   Generate a tree and some language history using dice rolls.
 
   \pause
-
-  \paragraph{Example}
-  \begin{itemize}
-  \item Start with \texttt{TATATA}
-  \item Roll a dice: On a 5 or 6, split the tree here.
-  \item Roll a dice: Replace that letter in the word with \texttt{E}.
-  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{dice.png}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \paragraph{Example}
+      \begin{itemize}
+      \item Start with \texttt{TATATA}
+      \item Roll a dice: On a 5 or 6, split the tree here.
+      \item Roll a dice: Replace that letter in the word with \texttt{E}.
+      \end{itemize}
+    \end{column}
+  \end{columns}
   \pause
-  $P(\text{Data} \mid \text{Model})$.
+  \begin{align}
+    \text{“Likelihood”: }P(\text{Data} \mid \text{Model})
+    \nonumber
+  \end{align}
 \end{frame}
 \begin{frame}{Going back from data}
   Is given data compatible with this model?
@@ -125,7 +140,7 @@
   \pause
   \item \texttt{TATETA}, \texttt{TAEATA}
   \pause
-  \item \texttt{EEEEEE}
+  \item \texttt{TAEETA}, \texttt{TETEEA}, \texttt{EATEEA}
   \end{itemize}
   \pause
 
@@ -134,7 +149,10 @@
   Probabilities = confidence of belief. {\small Not: repeatable random
     experiment}.
 
-  $P(\text{Model} \mid \text{Data})$.
+  \begin{align}
+    \text{“Posterior probability”: } P(\text{Model} \mid \text{Data})
+    \nonumber
+  \end{align}
 \end{frame}
 \begin{frame}{Bayes' Theorem}
   \begin{align}
@@ -151,7 +169,7 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{center}
-        \includegraphics[width=0.6\textwidth]{scale.png}
+        \footnotemark\includegraphics[width=0.6\textwidth]{scale.png}
       \end{center}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -191,9 +209,9 @@
 \section{[Examples]}
 \begin{frame}{So much the theory.}
   \begin{itemize}
-  \item Austronesian
-  \item Bantu
-  \item Indo-European
+  \item Austronesian: Branches and times
+  \item Bantu: Phylogeography
+  \item Indo-European: Ancient written sources
   \end{itemize}
 \end{frame}
 \subsection{Austronesian: Branches and times}
@@ -295,9 +313,23 @@
 \begin{frame}{Example 3: Indo-European – Data and Prologue}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \footnotemark\includegraphics[width=\textwidth,page=1,trim={0.5cm 4.5cm 0.5cm 0.5cm},clip]{ielex.pdf}
+      \lstdefinelanguage{Dyen}{morekeywords={a,b,c}, sensitive=true}
+      \lstset{
+        basicstyle=\footnotesize\tt,
+        breakatwhitespace=false,
+        breaklines=false,
+        captionpos=b,
+        keywordstyle=\color{green},
+        language=Dyen,
+        showspaces=false,
+        showstringspaces=false
+      }
+      \lstinputlisting[language=Dyen,
+        title=\footnotemark,
+        firstline=8937,
+        lastline=8957]{iedata.txt}
     \end{column}
-  \footnotetext{IELex: \cite{ielex}}
+  \footnotetext{\cite{dyen1997comparative}}
     \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=3,trim={2.2cm 4.6cm 2.7cm 5.0cm},clip]{gray2003language.pdf}
     \end{column}
@@ -307,13 +339,31 @@
 \begin{frame}{Example 3: Indo-European}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \footnotemark\includegraphics[width=\textwidth,page=1,trim={0.5cm 4.5cm 0.5cm 0.5cm},clip]{ielex.pdf}
+    \end{column}
+  \footnotetext{\cite{ielex}}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth,page=31,trim={3.5cm 19.8cm 2.5cm 2.8cm},clip]{chang2015ancestry.pdf}
+      
+      Starting from a replication of previous work\footnotemark, improve
+      \begin{itemize}
+        \item data
+        \item methodology
+        \item tree prior
+        \item post-processing
+      \end{itemize}
+      comparing each step.
+    \end{column}
+  \footnotetext{\cite{bouckaert2012mapping}}
+  \end{columns}
+\end{frame}
+\begin{frame}{Example 3: Indo-European}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=7,trim={2cm 9.8cm 2.5cm 1.8cm},clip]{chang2015ancestry.pdf}
     \end{column}
-  \footnotetext{\cite{chang2015ancestry}}
+  \footnotetext{\cite{chang2015ancestryconstrained}}
     \begin{column}{0.5\textwidth}
-      Starting from a replication of previous work\footnotemark, improve data,
-      methodology, tree prior and post-processing, comparing each step.
-
       \footnotesize “Here we present a phylogenetic analysis in which ancestry
       constraints permit more accurate inference of rates of change, based on
       observed changes between ancient or medieval languages and their modern
@@ -328,7 +378,6 @@
       the available data is taken into consideration.”
     \end{column}
   \end{columns}
-  \footnotetext{\cite{bouckaert2012mapping}}
 \end{frame}
 \begin{frame}{Example 3: Indo-European – Critique}
   \begin{itemize}
@@ -374,16 +423,16 @@
 \begin{frame}{Conclusions}
   \begin{itemize}
   \item Computer models can help make sense of large data sets
-  \item Mathematical models can handle and combine new \emph{types} of data for new types of results
   \item The computer only tests consistency or helps build intuition, it does not replace expertise
   \item Very few language-appropriate models so far
   \item Building a \emph{good} inference is hard!
+  \item Mathematical models can handle and combine new types of data for new \emph{types} of results
   \end{itemize}
   If you disagree with results, \emph{what parameters or choices do you disagree with?}
 \end{frame}
 \subsection{Further Reading}
 \begin{frame}[t,allowframebreaks]{Sources and Further Reading}
-  \nocite{mcmahon2005language,grayatkinson}
+  \nocite{mcmahon2005language}
   \printbibliography
 \end{frame}
 \end{document}
