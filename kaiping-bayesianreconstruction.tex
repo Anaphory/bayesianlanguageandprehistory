@@ -15,6 +15,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usetikzlibrary{trees,positioning,arrows}
 
 \usepackage{listings}
 
@@ -82,7 +83,7 @@
       cctccacgcc aacaaagcct cattctt---\\
       cctccacgcc aacaaagcct cattcttctt\\
       cctccacgcc aacggagcct caggtgtctt\\
-      cctccactcc aacggagcct caggtgtctt};}}}
+      cc---actcc aacggagcct caggtgtctt};}}}
     \visible<3->{{\node [align=left,anchor=east,cyan!50!black,font={\ttfamily}] at (arrow.west) {
       h ʊ n - ə ɹ - t \_ v ɔ~ ɹ - t\\
       
@@ -106,20 +107,22 @@
 
   \pause
   \begin{columns}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.3\textwidth}
       \begin{center}
-        \includegraphics[width=0.8\textwidth]{dice.png}
+        \includegraphics[width=\textwidth]{dice.png}
       \end{center}
     \end{column}
-    \begin{column}{0.6\textwidth}
+    \begin{column}{0.7\textwidth}
       \paragraph{Example}
       \begin{itemize}
-      \item Start with \texttt{TATATA}
-      \item Roll a dice: On a 5 or 6, split the tree here.
-      \item Roll a dice: Replace that letter in the word with \texttt{E}.
+      \item Start with a single language, and proced for 3 generations.
+      \item In each generation and language, roll a dice: On a 5 or 6, split the tree into two populations.
       \end{itemize}
+      \pause
+      Possible trees:
     \end{column}
   \end{columns}
+  \includegraphics[width=\textwidth]{alltrees.pdf}
   \pause
   \begin{align}
     \text{“Likelihood”: }P(\text{Data} \mid \text{Model})
