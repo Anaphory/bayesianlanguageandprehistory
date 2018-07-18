@@ -6,21 +6,21 @@
 \usepackage[english]{babel}
 
 \usepackage{fontspec}
-\setmainfont{Linux Biolinum}
+%\setmainfont{DejaVu}
 \setmonofont{DejaVu Sans Mono}
-%\setsansfont{Linux Biolinum}
+%\setsansfont{DejaVu Sans}
 \newfontfamily{\fallbackfont}{DejaVu Sans}[Scale=MatchLowercase]
 \DeclareTextFontCommand{\textfallback}{\fallbackfont}
 \usepackage{newunicodechar}
-\newunicodechar{⚀}{\fallbackfont{⚀}}
-\newunicodechar{⚁}{\fallbackfont{⚁}}
-\newunicodechar{⚂}{\fallbackfont{⚂}}
-\newunicodechar{⚃}{\fallbackfont{⚃}}
-\newunicodechar{⚄}{\fallbackfont{⚄}}
-\newunicodechar{⚅}{\fallbackfont{⚅}}
-\newunicodechar{ɛ}{\fallbackfont{ɛ}}
-\newunicodechar{ʋ}{\fallbackfont{ʋ}}
-\newunicodechar{ː}{\fallbackfont{ː}}
+\newunicodechar{⚀}{{\fallbackfont ⚀}}
+\newunicodechar{⚁}{{\fallbackfont ⚁}}
+\newunicodechar{⚂}{{\fallbackfont ⚂}}
+\newunicodechar{⚃}{{\fallbackfont ⚃}}
+\newunicodechar{⚄}{{\fallbackfont ⚄}}
+\newunicodechar{⚅}{{\fallbackfont ⚅}}
+\newunicodechar{ɛ}{{\fallbackfont ɛ}}
+\newunicodechar{ʋ}{{\fallbackfont ʋ}}
+\newunicodechar{ː}{ː}
 
 \usepackage{contour}
 \usepackage{graphicx}
@@ -205,11 +205,11 @@
   \begin{tikzpicture}
     \uncover<2->{{\node [align=left,anchor=east] (arrow) at (0,0) {→};}}
     \visible<-2>{\uncover<2>{{\node [align=left,anchor=east,font={\scshape\ttfamily}] at (arrow.west) {
-      cctccacgcc aacggagcct cattcttctt\\
-      cctccacgcc aacaaagcct cattctt---\\
-      cctccacgcc aacaaagcct cattcttctt\\
-      cctccacgcc aacggagcct caggtgtctt\\
-      cc---actcc aacggagcct caggtgtctt};}}}
+      CCTCCACGCC AACGGAGCCT CATTCTTCTT\\
+      CCTCCACGCC AACAAAGCCT CATTCTT---\\
+      CCTCCACGCC AACAAAGCCT CATTCTTCTT\\
+      CCTCCACGCC AACGGAGCCT CAGGTGTCTT\\
+      CC---ACTCC AACGGAGCCT CAGGTGTCTT};}}}
     \visible<3->{{\node [align=left,anchor=east,cyan!50!black,font={\ttfamily}] at (arrow.west) {
       h ʊ n - ə ɹ - t \_ v ɔ~ ɹ - t\\
 
@@ -222,7 +222,7 @@
     \visible<3->{{\node [align=right,black!90!white!90!blue,font={\Huge\bfseries}] at (image.center)
         {\contour{white}{Flemish}\\\contour{white}{Dutch}\\\contour{white}{German}\\\contour{white}{Frisian}\\\contour{white}{English}\\\contour{white}{Swedish}\\\contour{white}{Danish}\\\contour{white}{Norwegian}};}}
   \end{tikzpicture}
-  \footnotetext{\cite{garcia2015trans}}
+  \footnotetext{\textcite{garcia2015trans}}
 \end{frame}
 \subsection{Bayesian …}
 \begin{frame}{Evolution as a random process}
@@ -281,10 +281,9 @@
 \end{frame}
 \begin{frame}{Bayes' Theorem}
   \begin{align}
-    \tag{\footnotemark}
+    \nonumber
     P(\text{Model} \mid \text{Data}) \propto P(\text{Data} \mid \text{Model}) \times P(\text{Model})
   \end{align}
-  \footnotetext{\cite{michael2015bayesian}}
 
   \begin{center}
     “What did the language history look like?” \\ = \\  “What trees are compatible with
@@ -299,7 +298,7 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \pause
-      Bayesian inference may look complicated, but it is
+      Bayesian phylogenetic inference\footnotemark may look complicated, but it is
       \begin{itemize}
       \item model-based
       \item can incorporate prior knowledge
@@ -308,6 +307,7 @@
       \end{itemize}
     \end{column}
   \end{columns}
+  \footnotetext{\textcite{dunn2015language,dunn2009contact,michael2015bayesian}}
 \end{frame}
 \subsection{… Phylogenetics}
 \begin{frame}{Computational Phylogenetics}
@@ -362,12 +362,12 @@
   \item Morphosyntax: ??????
   \end{itemize}
 \end{frame}
-\section{[Examples]}
+\section{Examples}
 \begin{frame}{So much the theory.}
   \begin{itemize}
-  \item Austronesian: Branches and times
-  \item Bantu: Phylogeography
-  \item Indo-European: Ancient written sources
+  \item Austronesian: Branches and times – \textcite{gray2009language}
+  \item Bantu: Phylogeography – \textcite{currie2013cultural}
+  \item Indo-European: Ancient written sources – \textcite{chang2015ancestryconstrained}
   \end{itemize}
 \end{frame}
 \subsection{Austronesian: Branches and times}
@@ -402,14 +402,14 @@
       \end{itemize}
     \end{column}
   \end{columns}
-    \footnotetext{\cite{abvd}}
+    \footnotetext{\textcite{abvd}}
 \end{frame}
 \begin{frame}{Example 1: Austronesian}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=2,trim={2cm 4cm 1cm 5cm},clip]{austronesian.pdf}
     \end{column}
-    \footnotetext{\cite{gray2009language}}
+    \footnotetext{\textcite{gray2009language}}
     \begin{column}{0.5\textwidth}
       \footnotesize “The invention of the outrigger canoe and its
         sail may have enabled the Austronesians to move across this
@@ -449,7 +449,7 @@
       \footnotemark\includegraphics[width=0.9\textwidth]{bantuwordlist.pdf}
     \end{column}
   \end{columns}
-    \footnotetext{\cite{bastin1999continuity}}
+    \footnotetext{\textcite{bastin1999continuity}}
 \end{frame}
 \begin{frame}{Example 2: Bantu}
   \begin{columns}
@@ -471,13 +471,12 @@
       north of the rainforest.”
     \end{column}
   \end{columns}
-  \footnotetext{\cite{currie2013cultural}}
+  \footnotetext{\textcite{currie2013cultural}}
 \end{frame}
 \begin{frame}{Example 2: Bantu – Critique}
   \begin{itemize}
   \item Several robustness checks of parameters
   \item Prior? Geography without lexical data?
-  \item The tree is unrooted.
   \item How good is Brownian motion as model for language spread?\\
     Language shift and post-split contact might affect geographic
     inference. (Though the fundamental results look robust.)
@@ -497,23 +496,23 @@
         showstringspaces=false
       }
       \lstinputlisting[language=Dyen,
-        title=\footnotemark,
         firstline=8937,
         lastline=8957]{iedata.txt}
+        \footnotemark
     \end{column}
-  \footnotetext{\cite{dyen1997comparative}}
+  \footnotetext{\textcite{dyen1997comparative}}
     \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=3,trim={2.2cm 4.6cm 2.7cm 5.0cm},clip]{gray2003language.pdf}
     \end{column}
   \end{columns}
-  \footnotetext{\cite{gray2003language}}
+  \footnotetext{\textcite{gray2003language}}
 \end{frame}
 \begin{frame}{Example 3: Indo-European}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=1,trim={0.5cm 4.5cm 0.5cm 0.5cm},clip]{ielex.pdf}
     \end{column}
-  \footnotetext{\cite{ielex}}
+  \footnotetext{\textcite{ielex}}
     \begin{column}{0.5\textwidth}
       \includegraphics[width=\textwidth,page=31,trim={3.5cm 19.8cm 2.5cm 2.8cm},clip]{chang2015ancestry.pdf}
 
@@ -533,7 +532,7 @@
     \begin{column}{0.5\textwidth}
       \footnotemark\includegraphics[width=\textwidth,page=7,trim={2cm 9.8cm 2.5cm 1.8cm},clip]{chang2015ancestry.pdf}
     \end{column}
-  \footnotetext{\cite{chang2015ancestryconstrained}}
+  \footnotetext{\textcite{chang2015ancestryconstrained}}
     \begin{column}{0.5\textwidth}
       \footnotesize “Here we present a phylogenetic analysis in which ancestry
       constraints permit more accurate inference of rates of change, based on
@@ -559,10 +558,17 @@
   \item Ancestral constraints are very strong, and somewhat artifical in the
     model.
   \end{itemize}
-  Further reading: \textcite{verkerk2017phylogenies}
+  The discussion goes on \footnote{\textcite{verkerk2017phylogenies}}
 \end{frame}
 \section{And why actually not.}
-\begin{frame}{It will not solve all problems}
+\begin{frame}{Bayesian phylogenetics will not solve all problems}
+  \begin{itemize}
+  \item The papers show problems with Bayesian phylogenetics in practice
+    \pause
+  \item Fundamental problems of Bayesian phylogenetics
+  \end{itemize}
+\end{frame}
+\begin{frame}{Problems with specific papers}
   Some papers
   \begin{itemize}
   \item disregard prior knowledge
@@ -575,7 +581,7 @@
   \begin{itemize}
   \item can only build trees, no language contact
     \pause
-  \item only support cognate data (baby steps towards phonetic data and typology),
+  \item only support already cognate-coded data (baby steps towards phonetic data and typology),
     \pause no distinction between innovation and retention
     \pause
   \item are not realistic / not calibrated / have biases
