@@ -1,21 +1,35 @@
 \documentclass[9pt]{beamer}
 
 \mode<presentation> {\usetheme{Kaiping}}
-\setbeamercovered{transparent} 
+\setbeamercovered{transparent}
 
 \usepackage[english]{babel}
 
 \usepackage{fontspec}
-%\setmainfont{Linux Biolinum}
+\setmainfont{Linux Biolinum}
 \setmonofont{DejaVu Sans Mono}
 %\setsansfont{Linux Biolinum}
+\newfontfamily{\fallbackfont}{DejaVu Sans}[Scale=MatchLowercase]
+\DeclareTextFontCommand{\textfallback}{\fallbackfont}
+\usepackage{newunicodechar}
+\newunicodechar{⚀}{\fallbackfont{⚀}}
+\newunicodechar{⚁}{\fallbackfont{⚁}}
+\newunicodechar{⚂}{\fallbackfont{⚂}}
+\newunicodechar{⚃}{\fallbackfont{⚃}}
+\newunicodechar{⚄}{\fallbackfont{⚄}}
+\newunicodechar{⚅}{\fallbackfont{⚅}}
+\newunicodechar{ɛ}{\fallbackfont{ɛ}}
+\newunicodechar{ʋ}{\fallbackfont{ʋ}}
+\newunicodechar{ː}{\fallbackfont{ː}}
 
 \usepackage{contour}
-\usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usetikzlibrary{trees,positioning,arrows}
+\usetikzlibrary{automata}
 
 \usepackage{listings}
 
@@ -41,7 +55,119 @@
 % Malmoe
 
 \setlength{\parskip}{1ex plus 0.2ex minus 0.5ex}
-
+\newcommand{\trees}{%
+  \begin{tikzpicture}[sibling distance=3mm,level distance=3mm,
+      every node/.style={align=center},
+      node/.style={circle, fill, minimum size=0.3em,scale=0.3}]
+    \node[node] (1) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}};
+    \node[below=of 1]   {$\frac{8}{27}$\\\tiny$29.6\%$};
+    \node[node,right=6mm of 1] (2) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }
+        child { node[node] {} }}};
+    \node[below=of 2]   {$\frac{4}{27}$\\\tiny$14.8\%$};
+    \node[node,right=6mm of 2] (3) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}
+      child { node[node] {}
+        child { node[node] {} }}};
+    \node[below=of 3]   {$\frac{8}{81}$\\\tiny$9.9\%$};
+    \node[node,right=5mm of 3] (3b) {}
+    child { node[node] {}
+      child { node[node] {}
+        child {node[node] {} }}}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}};
+    \node[below=of 3b]   {$\frac{16}{243}$\\\tiny$6.6\%$};
+    \node[node,right=6mm of 3b] (4) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }
+        child { node[node] {} }}
+      child { node[node] {}
+        child { node[node] {} }}};
+    \node[below=of 4]   {$\frac{4}{81}$\\\tiny$4.9\%$};
+    \node[node,right=5mm of 4] (5) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}
+      child { node[node] {}
+        child { node[node] {} }
+        child { node[node] {} }}};
+    \node[below=of 5]   {$\frac{4}{81}$\\\tiny$4.9\%$};
+    \node[node,right=6mm of 5] (6) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }
+        child { node[node] {} }}};
+    \node[below=of 6]   {$\frac{8}{243}$\\\tiny$3.3\%$};
+    \node[node,right=7mm of 6] (7) {}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }
+        child { node[node] {} }}}
+    child { node[node] {}
+      child { node[node] {}
+        child { node[node] {} }}};
+    \node[below=of 7]   {$\frac{8}{243}$\\\tiny$3.3\%$};
+    \node[node,right=7mm of 7] (8) {}
+    child { node[node] {}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}};
+    \node[below=of 8]   {$\frac{2}{81}$\\\tiny$2.5\%$};
+    \node[node,right=7mm of 8] (9) {}
+    child { node[node] {}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }}}
+    child[sibling distance=5mm] { node[node] {}
+      child[sibling distance=3mm] { node[node] {} 
+        child[sibling distance=3mm] { node[node] {} }}
+      child[sibling distance=3mm] { node[node] {} 
+        child[sibling distance=3mm] { node[node] {} }}};
+    \node[below=of 9]   {$\frac{16}{729}$\\\tiny$2.1\%$};
+    \node[node,right=8mm of 9] (10) {}
+    child { node[node] {}
+      child[sibling distance=3mm] { node[node] {} 
+        child[sibling distance=3mm] { node[node] {} }}
+      child[sibling distance=3mm] { node[node] {} 
+        child[sibling distance=3mm] { node[node] {} }}}
+    child[sibling distance=5mm] { node[node] {}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }}};
+    \node[below=of 10]   {$\frac{16}{729}$\\\tiny$2.1\%$};
+    \node[node,right=2cm of 10] (11) {}
+    child[sibling distance=10mm] { node[node] {}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}}
+    child[sibling distance=10mm] { node[node] {}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}
+      child[sibling distance=5mm] { node[node] {}
+        child[sibling distance=3mm] { node[node] {} }
+        child[sibling distance=3mm] { node[node] {} }}};
+    \node[below=of 11]      {$\frac{1}{2817}$\\\tiny$0.0\%$};
+      \path([yshift=-5mm,xshift=-3mm]10.east) -- ([yshift=-5mm]11.west)
+  node[pos=0.38,node]{} node[pos=0.45,node]{} node[pos=0.52,node]{};    
+  \end{tikzpicture}
+  }
 
 % Decrease footnote size
 
@@ -75,7 +201,7 @@
 \end{frame}
 \begin{frame}{Solution}
   Tree reconstruction methods from \textbf{Bioinformatics}
-  
+
   \begin{tikzpicture}
     \uncover<2->{{\node [align=left,anchor=east] (arrow) at (0,0) {→};}}
     \visible<-2>{\uncover<2>{{\node [align=left,anchor=east,font={\scshape\ttfamily}] at (arrow.west) {
@@ -86,7 +212,7 @@
       cc---actcc aacggagcct caggtgtctt};}}}
     \visible<3->{{\node [align=left,anchor=east,cyan!50!black,font={\ttfamily}] at (arrow.west) {
       h ʊ n - ə ɹ - t \_ v ɔ~ ɹ - t\\
-      
+
       h ʊ n d ɐ - - t \_ v ɔː - - t\\
       h ʊ n d ə - - t \_ β œ~ - - t\\
       h ɐ n d - ɹ ə d \_ w ɜː - - d\\
@@ -103,26 +229,26 @@
   \paragraph{Idea} Evolution = a random process on a tree\footnote{or a network or
     a population, as long as we can formalize it.}.
 
-  Generate a tree and some language history using dice rolls.
+  Generate a tree using dice rolls.
 
   \pause
   \begin{columns}
-    \begin{column}{0.3\textwidth}
+    \begin{column}{0.25\textwidth}
       \begin{center}
         \includegraphics[width=\textwidth]{dice.png}
       \end{center}
     \end{column}
-    \begin{column}{0.7\textwidth}
+    \begin{column}{0.75\textwidth}
       \paragraph{Example}
       \begin{itemize}
-      \item Start with a single language, and proced for 3 generations.
-      \item In each generation and language, roll a dice: On a 5 or 6, split the tree into two populations.
+      \item Start with a single language, and proceed for 3 generations.
+      \item In each generation and language, roll a dice: On ⚄⚅, split the current language in 2.
       \end{itemize}
       \pause
       Possible trees:
     \end{column}
   \end{columns}
-  \includegraphics[width=\textwidth]{alltrees.pdf}
+  \trees
   \pause
   \begin{align}
     \text{“Likelihood”: }P(\text{Data} \mid \text{Model})
@@ -132,21 +258,18 @@
 \begin{frame}{Going back from data}
   Is given data compatible with this model?
 
-  \pause
-  \begin{itemize}
-  \item \texttt{TATETA}
-  \pause
-  \item \texttt{TATATA}
-  \pause
-  \item \texttt{TATUTA}
-  \pause
-  \item \texttt{TATETA}, \texttt{TAEATA}
-  \pause
-  \item \texttt{TAEETA}, \texttt{TETEEA}, \texttt{EATEEA}
-  \end{itemize}
+  \trees
+
+  “I generated a tree with three recent languages.”
+
   \pause
 
-  \emph{How} compatible is this data with this or that model?
+  “Also, my first roll was one of ⚃⚄⚅”
+
+  \pause
+
+  \emph{How} compatible is this data with this or that model? Which models
+  should I believe in?
 
   Probabilities = confidence of belief. {\small Not: repeatable random
     experiment}.
@@ -162,7 +285,7 @@
     P(\text{Model} \mid \text{Data}) \propto P(\text{Data} \mid \text{Model}) \times P(\text{Model})
   \end{align}
   \footnotetext{\cite{michael2015bayesian}}
-  
+
   \begin{center}
     “What did the language history look like?” \\ = \\  “What trees are compatible with
     the data and my idea of language change?” \\ = \\ “Weighted by how ‘strange’
@@ -193,15 +316,46 @@
   \pause
   Need:
   \begin{itemize}
-  \item simple stochastic model(s) of language evolution, with parameters
-  \item intuition (“prior”) of how parameters look like
+  \item simple stochastic model(s) of language evolution, with parameters.
+
+  Example: \emph{generalized binary model}
+
+  \begin{tikzpicture}[->,>=stealth',auto,semithick,node distance=3cm,scale=0.7]
+    \tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=0.7]
+    \node[state]    (A)                     {$0$};
+    \node[state]    (B)[right of=A]   {$1$};
+\path
+(A) edge[loop left]     node{⚀⚁⚂}     (A)
+    edge[bend left]     node{⚃⚄⚅}     (B)
+(B) edge[loop right]    node{⚀⚁⚂⚃⚄}  (B)
+    edge[bend left]     node{⚅}        (A);
+  \end{tikzpicture}
+  \item intuition (“prior”) of what parameters look like
   \item large dataset of model-compatible data
   \end{itemize}
 
-  \pause
-  Data:
+\end{frame}
+\begin{frame}{Data for Computational Phylogenetics}
   \begin{itemize}
-  \item Swadesh lists: models based on semantic change (like Glottochronology – but without its problems)
+  \item Swadesh lists: models based on semantic change (like Glottochronology – but much more flexible)\\
+    \begin{tabular}{lcc}
+      Language & \textit{hand} & \textit{two} \\
+      \hline
+      Dutch &
+      \only<2->{\cellcolor{blue!25}}\only<1-2>{hant}\only<4>{1}\only<5->{1 0 0}&
+      \only<2->{\cellcolor{green!25}}\only<1-2>{tʋeː}\only<4>{4}\only<5->{1 0}	\\
+      English &
+      \only<2->{\cellcolor{blue!25}}\only<1-2>{hænd}\only<4>{1}\only<5->{1 0 0} &
+      \only<2->{\cellcolor{green!25}}\only<1-2>{tuː}\only<4>{4}\only<5->{1 0} \\
+      French &
+      \only<2->{\cellcolor{red!25}}\only<1-2>{mɛ̃}\only<4>{2}\only<5->{0 1 0} &
+      \only<2->{\cellcolor{green!25}}\only<1-2>{dø}\only<4>{4}\only<5->{1 0} \\
+      Indonesian &
+      \only<2->{\cellcolor{gray!25}}\only<1-2>{taŋan}\only<4>{3}\only<5->{0 0 1} &
+      \only<2->{\cellcolor{yellow!25}}\only<1-2>{dua}\only<4>{5}\only<5->{0 1} \\
+      \hline
+    \end{tabular}
+    \onslide<6->
   \item Geography: various models
   \item Phonetic alignments: still in infancy
   \item Typological data: Some approaches, problems with universals/pathways
@@ -224,9 +378,26 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-      \item Austronesian Basic Vocabulary Database: several 1000 cognate classes for 210 meanings in 400 langs
+      \item Austronesian Basic Vocabulary Database: several 1000 cognate classes
+        for 210 meanings in 400 langs
       \item Plus two “outgroup” langs, minus borrowings
       \item Binary covarion model
+        \begin{tikzpicture}[->,>=stealth',auto,semithick,node distance=1cm,scale=0.6]
+          \tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=0.6]
+          \node[state]    (C0)                {C0};
+          \node[state]    (C1)[right=of C0]   {C1};
+          \node[state]    (H0)[above=of C0]   {H0};
+          \node[state]    (H1)[right=of H0]   {H1};
+          \path
+          (C0) edge[very thin,dotted,bend left] (C1)
+          (C1) edge[very thin,dotted,bend left] (C0)
+          (C0) edge[bend left] (H0)
+          (C1) edge[bend left] (H1)
+          (H0) edge[bend left] (C0)
+          (H1) edge[bend left] (C1)
+          (H0) edge[very thick,bend left] (H1)
+          (H1) edge[very thick,bend left] (H0);
+        \end{tikzpicture}
       \item Calibrations and variable replacement rates
       \end{itemize}
     \end{column}
@@ -248,7 +419,7 @@
         the outrigger canoe complex can only be traced back to
         Proto-Malayo-Polynesian and not Proto-Austronesian (41).”
         \includegraphics[width=0.8\textwidth,page=3,trim={1cm 1cm 7.5cm 16cm},clip]{austronesian.pdf}
-        
+
     \end{column}
   \end{columns}
 \end{frame}
@@ -344,8 +515,8 @@
   \footnotetext{\cite{ielex}}
     \begin{column}{0.5\textwidth}
       \includegraphics[width=\textwidth,page=31,trim={3.5cm 19.8cm 2.5cm 2.8cm},clip]{chang2015ancestry.pdf}
-      
-      Starting from a replication of previous work\footnotemark, improve
+
+      Starting from a replication of previous work \parencite{bouckaert2012mapping}, improve
       \begin{itemize}
         \item data
         \item methodology
@@ -354,7 +525,6 @@
       \end{itemize}
       comparing each step.
     \end{column}
-  \footnotetext{\cite{bouckaert2012mapping}}
   \end{columns}
 \end{frame}
 \begin{frame}{Example 3: Indo-European}
@@ -388,7 +558,7 @@
   \item Ancestral constraints are very strong, and somewhat artifical in the
     model.
   \end{itemize}
-  \footnotetext{\cite{verkerk2017phylogenies}}
+  Further reading: \textcite{verkerk2017phylogenies}
 \end{frame}
 \section{And why actually not.}
 \begin{frame}{It will not solve all problems}
@@ -406,7 +576,7 @@
     \pause
   \item only support cognate data (baby steps towards phonetic data and typology),
     \pause no distinction between innovation and retention
-    \pause 
+    \pause
   \item are not realistic / not calibrated / have biases
     \pause
   \item can't actually decide high-level relationships
@@ -422,6 +592,7 @@
 \section{Conclusions}
 \begin{frame}{Conclusions}
   \begin{itemize}
+  \item It is useful to talk about probabilites of events in the past
   \item Computer models can help make sense of large data sets
   \item The computer only tests consistency or helps build intuition, it does not replace expertise
   \item Very few language-appropriate models so far
@@ -438,4 +609,4 @@
 \end{document}
 %%% Local Variables:
 %%% TeX-engine: luatex
-%%% End: 
+%%% End:
