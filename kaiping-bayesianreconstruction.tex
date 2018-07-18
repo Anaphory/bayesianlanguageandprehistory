@@ -325,10 +325,10 @@
     \node[state]    (A)                     {$0$};
     \node[state]    (B)[right of=A]   {$1$};
 \path
-(A) edge[loop left]     node{⚀⚁⚂}     (A)
-    edge[bend left]     node{⚃⚄⚅}     (B)
-(B) edge[loop right]    node{⚀⚁⚂⚃⚄}  (B)
-    edge[bend left]     node{⚅}        (A);
+(A) edge[loop left]     node{⚀⚁⚂⚃⚄}   (A)
+    edge[bend left]     node{⚅}         (B)
+(B) edge[loop right]    node{⚀⚁⚂}      (B)
+    edge[bend left]     node{⚃⚄⚅}      (A);
   \end{tikzpicture}
   \item intuition (“prior”) of what parameters look like
   \item large dataset of model-compatible data
@@ -390,12 +390,12 @@
           \node[state]    (H1)[right=of H0]   {H1};
           \path
           (C0) edge[very thin,dotted,bend left] (C1)
-          (C1) edge[very thin,dotted,bend left] (C0)
+          (C1) edge[very thin,bend left] (C0)
           (C0) edge[bend left] (H0)
           (C1) edge[bend left] (H1)
           (H0) edge[bend left] (C0)
           (H1) edge[bend left] (C1)
-          (H0) edge[very thick,bend left] (H1)
+          (H0) edge[very thick,dotted,bend left] (H1)
           (H1) edge[very thick,bend left] (H0);
         \end{tikzpicture}
       \item Calibrations and variable replacement rates
@@ -476,7 +476,8 @@
 \begin{frame}{Example 2: Bantu – Critique}
   \begin{itemize}
   \item Several robustness checks of parameters
-  \item Prior?
+  \item Prior? Geography without lexical data?
+  \item The tree is unrooted.
   \item How good is Brownian motion as model for language spread?\\
     Language shift and post-split contact might affect geographic
     inference. (Though the fundamental results look robust.)
